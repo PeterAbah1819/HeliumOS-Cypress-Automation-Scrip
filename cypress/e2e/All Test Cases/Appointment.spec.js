@@ -3,32 +3,36 @@ describe('Appointment Suite', function()
 
 it('Create an appointment for a patient with a doctor', function()
     {
-        cy.login()
+        cy.logins()
         //click on appointment
         cy.get('[ng-href="/appointments"]').click()
         //Click on Add appointment
         cy.get('.Appointments__subheader > :nth-child(1) > :nth-child(1)').click()
         //search for a registered patient
-        cy.get('.AlmightyPatient__label > .multiselect > .multiselect__tags').click().type('Test')
+        cy.get('.AlmightyPatient__label > .multiselect > .multiselect__tags').click().type('Testing Test').wait(1000)
         //Select the test patient
-        cy.get(':nth-child(3) > .multiselect__option > .AlmightyPatient__option').click()
-        //select for a doctor
+        cy.get(':nth-child(2) > .multiselect__option > .AlmightyPatient__option').click()
+        //Search for a doctor
         cy.get('.AlmightyDoctor__label > .multiselect > .multiselect__tags').click().wait(500)
         //Select the doctor
-        cy.get('.AlmightyDoctor__label > .multiselect > .multiselect__content-wrapper > .multiselect__content > :nth-child(1) > .multiselect__option').click().wait(500)
+        cy.get('.DetailsFields > [for="teams"] > .multiselect > .multiselect__content-wrapper > .multiselect__content > :nth-child(2) > .multiselect__option > :nth-child(1) > .AlmightyDropdown__option > .AlmightyDropdown__option--main > span').click({ force: true }).wait(500)
         //select date
         cy.get('.AlmightyDatetimePicker__field').click()
         //pick the date
-        cy.get('div > :nth-child(37)').click()
+        cy.get('div > :nth-child(39)').click()
         //confirm the date picked
         cy.get('.AlmightyDatetimeModal__confirm').click()
         //click the time filed
         cy.get('.AlmightyTimeDropdown__label > .multiselect > .multiselect__tags').click()
         //select the time
-        cy.get(':nth-child(41) > .multiselect__option > .AlmightyTimeDropdown__option').click()
+        cy.get(':nth-child(45) > .multiselect__option > .AlmightyTimeDropdown__option').click()
+
+        //Select the overlapping appointment
+        cy.get('.AlmightyCheckbox__selector').click().wait(500)
 
         //Select the clinic
         cy.get('[for="clinic"] > .multiselect > .multiselect__tags').click()
+        cy.get('[for="clinic"] > .multiselect > .multiselect__content-wrapper > .multiselect__content > :nth-child(1) > .multiselect__option > :nth-child(1) > .AlmightyDropdown__option > .AlmightyDropdown__option--main').click()
 
         //click on the reason field
         cy.get('[for="appointmentReasons"] > .multiselect > .multiselect__tags').click().wait(2000)
@@ -56,12 +60,15 @@ it('Create an appointment for a patient with a doctor', function()
         //Click on Add appointment
         cy.get('.Appointments__subheader > :nth-child(1) > :nth-child(1)').click()
         //search for a registered patient
-        cy.get('.AlmightyPatient__label > .multiselect > .multiselect__tags').click().type('Test')
+        cy.get('.AlmightyPatient__label > .multiselect > .multiselect__tags').click().type('Testing Tester').wait(1000)
         //Select the test patient
-        cy.get(':nth-child(3) > .multiselect__option > .AlmightyPatient__option').click()
-        //select for a doctor
-        cy.get('.AlmightyDoctor__label > .multiselect > .multiselect__tags').click().wait(500)
-        //Select the doctor
+        cy.get(':nth-child(1) > .multiselect__option > .AlmightyPatient__option').click()
+
+        //Select the team checkbox
+        cy.get('[for="appointmentWith"] > .AlmightyRadio__label > .AlmightyRadio__group > :nth-child(2)').click()
+        //search for a team
+        cy.get('.DetailsFields > [for="teams"] > .multiselect > .multiselect__tags').click().type('Testing Team').wait(1000)
+        //Select the Team
         cy.get('.AlmightyDoctor__label > .multiselect > .multiselect__content-wrapper > .multiselect__content > :nth-child(1) > .multiselect__option').click().wait(500)
         //select date
         cy.get('.AlmightyDatetimePicker__field').click()
@@ -73,6 +80,9 @@ it('Create an appointment for a patient with a doctor', function()
         cy.get('.AlmightyTimeDropdown__label > .multiselect > .multiselect__tags').click()
         //select the time
         cy.get(':nth-child(41) > .multiselect__option > .AlmightyTimeDropdown__option').click()
+
+        //Select the overlapping appointment
+        cy.get('.AlmightyCheckbox__selector').click().wait(500)
 
         //Select the clinic
         cy.get('[for="clinic"] > .multiselect > .multiselect__tags').click()
